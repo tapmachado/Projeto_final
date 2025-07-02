@@ -10,7 +10,7 @@ Nos últimos anos, a silvicultura tem se expandido significativamente no Brasil,
 
 Na busca de alternativas que visam contornar esses problemas, estudos vem sendo realizados para preencher essa lacuna no setor florestal, como o uso de microorganismos xilófagos para acelerar a biodegradação e facilitar ou mesmo substituir a destoca mecânica.
 
-Diante do exposto esse trabalho teve como objetivo encontrar fungos xilófagos com potencial enzimático para serem aplicados na biodegradação acelerada de tocos remanescentes em reflorestamentos comerciais.
+**Objetivo:** Encontrar fungos xilófagos com potencial enzimático para serem aplicados na biodegradação acelerada de tocos remanescentes em reflorestamentos comerciais.
 
 Para isso, fungos foram coletados em reflorestamentos de Pinus e Eucalipto no Sul do Brasil (Figura 2), para que desses, fosse aferido o potencial enzimático na degradação da parede celular vegetal, para serem utilizados como agentes biotecnológicos na destoca biológica (carinhosamente chamada de "**Biodestoca**").
 
