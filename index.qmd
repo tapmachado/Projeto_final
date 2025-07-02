@@ -12,7 +12,7 @@ title: ""
 
 # PROJETO FINAL FIP 606 - Análise e visualização de dados em fitopatologia.
 
-Olá, nós somos **Marina, Taís e Vitória** mestrandas do Programa de Pós-Graduação em Fitopatologia da Universidade Federal de Viçosa (UFV). Nesse site, iremos apresentar para você o Projeto Final desenvolvido por nós na Disciplina FIP 606 - Análise e Visualização de Dados em Fitopatologia, ministrada pelo Prof. E**merson Medeiros Del Ponte.**
+Olá, nós somos **Marina, Taís e Vitória** mestrandas do Programa de Pós-Graduação em Fitopatologia da Universidade Federal de Viçosa (UFV). Nesse site, iremos apresentar para você o Projeto Final desenvolvido por nós na Disciplina FIP 606 - Análise e Visualização de Dados em Fitopatologia, ministrada pelo **Prof. Emerson Medeiros Del Ponte.**
 
 # **Biotecnologia aplicada à destoca florestal**
 
