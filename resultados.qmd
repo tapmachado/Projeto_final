@@ -74,18 +74,65 @@ for (enz in enzimas) {
 ## 🏆 Top 3 Isolados por Enzima
 
 ```{r}
+# Pacotes necessários
+library(tidyverse)
+library(ggplot2)
+library(forcats)
+library(scales)
+
+# Dicionário de nomes completos das enzimas
+nomes_enzimas <- c(
+  bgli = "β-glicosidase",
+  xil = "Xilanase",
+  endog = "Endoglucanase",
+  lac = "Lacase",
+  fpa = "FPase",
+  bxil = "β-xilosidase",
+  mangper = "Manganês Peroxidase"
+)
+
+# Calcular top 3 isolados por enzima
 melhores_isolados <- dados %>%
   group_by(enzima, isolado) %>%
   summarise(media_atividade = mean(atividade, na.rm = TRUE), .groups = "drop") %>%
   arrange(enzima, desc(media_atividade)) %>%
   group_by(enzima) %>%
-  slice_head(n = 3)
+  slice_head(n = 3) %>%
+  mutate(colocacao = row_number())  # 1, 2, 3 lugares
 
-knitr::kable(
-  melhores_isolados,
-  caption = "Top 3 isolados com maior média de atividade por enzima",
-  digits = 2
-)
+# Novas cores do pódio (1º, 2º, 3º)
+cores_podio <- c("1" = "#1f78b4",  # Azul escuro
+                 "2" = "#33a02c",  # Verde vibrante
+                 "3" = "#ff7f00")  # Laranja forte
+
+# Loop para gerar pódio por enzima
+for (enz in unique(melhores_isolados$enzima)) {
+  
+  dados_podio <- melhores_isolados %>% filter(enzima == enz)
+  
+  nome_completo <- nomes_enzimas[[tolower(enz)]]
+  if (is.null(nome_completo)) nome_completo <- enz
+  
+  grafico_podio <- ggplot(dados_podio, aes(x = fct_reorder(isolado, -media_atividade), 
+                                           y = media_atividade, 
+                                           fill = factor(colocacao))) +
+    geom_col(width = 0.6, show.legend = FALSE) +
+    geom_text(aes(label = round(media_atividade, 2)), vjust = -0.5, size = 4.2) +
+    scale_fill_manual(values = cores_podio) +
+    labs(
+      title = paste("🏆 Pódio: Top 3 isolados para", nome_completo),
+      x = "Isolado",
+      y = "Média da atividade enzimática"
+    ) +
+    theme_minimal() +
+    theme(
+      plot.title = element_text(hjust = 0.5, face = "bold", size = 14),
+      axis.text = element_text(size = 11)
+    )
+  
+  print(grafico_podio)
+}
+
 ```
 
 ---

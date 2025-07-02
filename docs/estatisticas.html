@@ -158,11 +158,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </i> 
 <span class="menu-text"></span></a>
   </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="./#search"> <i class="bi bi-search" role="img">
-</i> 
-<span class="menu-text"></span></a>
-  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -185,7 +180,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="análise-estatística-para-dados-enzimáticos">ANÁLISE ESTATÍSTICA PARA DADOS ENZIMÁTICOS</h2>
 <p>Nossos dados comportam a atividade enzimática do grupo de Fungos coletados no Sul do Brasil.</p>
 <ul>
-<li>A planilha no google contém dados de 20 <strong>isolados</strong> induzidos em 3 diferentes <strong>substratos,</strong> dos quais vamos quantificar a expressão de 7 <strong>enzimas.</strong></li>
+<li>A planilha no google contém dados de 20 isolados induzidos em 3 diferentes substratos, dos quais vamos quantificar a expressão de 7 enzimas.</li>
 </ul>
 <p>🧾 Passo 1 - Importação dos dados diretamente de uma planilha do Google Sheets</p>
 <div class="cell">
@@ -244,23 +239,25 @@ O seguinte objeto é mascarado por 'package:stats':
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Salvar base para uso em resultados</span></span>
 <span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(dados, enzimas, <span class="at">file =</span> <span class="st">"estatisticas_base.RData"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<ul>
-<li><p><em>Buscamos realizar análises estatísticas robustas:</em> Teste de normalidade de Anderson-Darling, um teste robusto de normalidade que é sensível á caudas de distribuição; Homocedasticidade pelo teste de Levene por ser mais robusto em dados não normais e com distribuição incerta, ANOVA e post-hoc: Teste de Tukey para comparação de médias.</p></li>
-<li><p>Ao final da análise, objetivamos visualizar os resultados em gráficos intuitivos que demontrem quais fungos se destacam na produção das enzimas de interesse e se a indução sob determinado substrato interfere na atividade enzimática dos isolados.</p></li>
-</ul>
 </section>
 <section id="metodologia-estatística-aplicada" class="level2">
-<h2 class="anchored" data-anchor-id="metodologia-estatística-aplicada">📊 Metodologia estatística aplicada</h2>
-<p>Para garantir a robustez da análise, foram utilizados os seguintes testes estatísticos:</p>
-<ol type="1">
-<li><strong>Estatística descritiva:</strong> média, desvio padrão e mediana para cada combinação <code>isolado x substrato</code>.</li>
-<li><strong>Teste de normalidade (Anderson-Darling):</strong> aplicado aos grupos com n ≥ 5 para verificar se os dados seguem distribuição normal.</li>
-<li><strong>Teste de homogeneidade de variância (Levene):</strong> verifica se há homogeneidade entre os grupos antes da ANOVA.</li>
-<li><strong>ANOVA fatorial (2 vias):</strong> avalia se há diferenças significativas entre isolados, substratos e sua interação.</li>
-<li><strong>Teste de Tukey HSD (post-hoc):</strong> quando ANOVA indica diferenças significativas, este teste identifica quais grupos diferem entre si.</li>
-<li><em>(Opcional)</em> <strong>Agrupamento por letras de significância:</strong> com base no teste de Tukey, agrupamentos de isolados com diferenças estatísticas são representados por letras distintas.</li>
-</ol>
-<p>Essa sequência de testes garante que a seleção dos isolados mais promissores seja estatisticamente embasada.</p>
+<h2 class="anchored" data-anchor-id="metodologia-estatística-aplicada">📊 Metodologia estatística aplicada:</h2>
+<p>Buscando garantir a confiabilidade dos resultados, realizamos análises estatísticas robustas. Inicialmente, aplicamos:</p>
+<ul>
+<li><p><strong>Teste de normalidade de Anderson-Darling</strong>: que apresenta maior sensibilidade às caudas da distribuição, sendo adequado para identificar desvios da normalidade.</p></li>
+<li><p><strong>Teste de homogeneidade de variância (Levene):</strong> para verificar a homogeneidade de variâncias entre os grupos, por sua robustez frente a distribuições não normais e variabilidade incerta.</p>
+<p>Durante a análise dos dados de atividade enzimática dos fungos isolados, observou-se que todos grupos (combinações de isolado e substrato) apresentaram <strong>variância nula,</strong> ou seja, todos os valores de atividade medidos foram idênticos.</p>
+<p>Esse cenário impossibilita a aplicação de testes estatísticos inferenciais, como a ANOVA e o teste de Tukey, que dependem da existência de variação entre e dentro dos grupos para identificar diferenças significativas.</p>
+<p>Dessa forma, optamos por realizar uma análise descritiva, baseada nas médias das atividades enzimáticas, permitindo ainda assim comparar os isolados quanto ao seu desempenho médio, mesmo sem suporte estatístico para afirmar diferença significativa.</p></li>
+<li><p><strong>Estatística descritiva:</strong> foram calculadas medidas como média, desvio padrão e mediana para cada combinação de isolado e substrato. Esses parâmetros permitiram descrever o comportamento central e a variabilidade da atividade enzimática de forma mais precisa, mesmo na ausência de significância estatística.</p>
+<ul>
+<li><p><strong>Média:</strong> utilizada para representar o desempenho médio de cada isolado sob determinado substrato, facilitando comparações diretas entre os tratamentos.</p></li>
+<li><p><strong>Desvio padrão:</strong> forneceu uma estimativa da variabilidade dos dados em torno da média, auxiliando na interpretação da consistência dos resultados obtidos para cada combinação.</p></li>
+<li><p><strong>Mediana:</strong> usada como medida complementar, especialmente útil em casos de distribuição assimétrica ou presença de valores extremos, oferecendo uma visão mais robusta do comportamento central.</p></li>
+</ul>
+<p>Essa abordagem descritiva serviu como base para a construção de gráficos comparativos, permitindo a identificação visual de isolados promissores e possíveis efeitos dos substratos sobre a atividade enzimática.</p>
+<p>Por fim, os resultados foram representados por meio de gráficos intuitivos, com o objetivo de destacar os fungos com maior produção das enzimas de interesse e avaliar se a indução em diferentes substratos influencia significativamente a atividade enzimática dos isolados.</p></li>
+</ul>
 
 
 </section>
