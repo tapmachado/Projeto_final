@@ -18,14 +18,10 @@ Olá, nós somos **Marina, Taís e Vitória** mestrandas do Programa de Pós-Gra
 
 Este site apresenta a proposta e os resultados do projeto final da disciplina **FIP 606**, com foco na aplicação de enzimas lignocelulolíticas para acelerar a **biodegradação de tocos florestais** de forma sustentável.
 
-| Enzima      | Função Principal          | Origem Testada     |
-|-------------|---------------------------|--------------------|
-| Lacases     | Degradação de lignina     | Fungos nativos     |
-| Peroxidases | Oxidação de compostos     | *Pleurotus* spp.   |
-| Celulases   | Quebra de celulose        | Bactérias isoladas |
-| Xilanases   | Hidrólise de hemicelulose | Fungos comerciais  |
+|     |
+|-----|
 
-# Principais vantagens identificadas:
+# Principais vantagens:
 
 ::: highlight-box
 -   ⏱ **Redução média de 35–40% no tempo de degradação**
