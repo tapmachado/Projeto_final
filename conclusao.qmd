@@ -7,16 +7,12 @@ As análises demonstraram variações expressivas na atividade enzimática entre
 
 Com base na média da atividade enzimática, foram selecionados os **três isolados de melhor desempenho para cada enzima**, destacando-os como os principais candidatos para futuras aplicações biotecnológicas:
 
-- *β-glicosidase:* Isolados 24, 4 e 1.  
-- *β-xilosidase:* Isolados 24, 52 e 31.  
-- *Endoglucanase:* Isolados 44, 5 e 48.  
-- *F-PAse:* Isolados 17, 44 e 52.  
-- *Lacase:* Isolados 36, 31 e 37.  
-- *Manganês-peroxidase:* Isolados 26, 18 e 53.  
-- *Xilanase:* Isolados 24, 1 e 42.
+-   *β-glicosidase:* Isolados 24, 4 e 1.\
+-   *β-xilosidase:* Isolados 24, 52 e 31.\
+-   *Endoglucanase:* Isolados 44, 5 e 48.\
+-   *F-PAse:* Isolados 17, 44 e 52.\
+-   *Lacase:* Isolados 36, 31 e 37.\
+-   *Manganês-peroxidase:* Isolados 26, 18 e 53.\
+-   *Xilanase:* Isolados 24, 1 e 42.
 
 **Top três isolados geral:** Isolados 24, 1 e 42.
-
-
-
-
