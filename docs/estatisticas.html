@@ -216,7 +216,7 @@ O seguinte objeto é mascarado por 'package:stats':
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nortest)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Importar dados do Google Sheets</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">"https://docs.google.com/spreadsheets/d/14YBzyOu-bqmetqoNvqLmNQPyVXWfPtqyZYqgDiyxPiw/edit?usp=drive_web"</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">"https://docs.google.com/spreadsheets/d/14YBzyOu-bqmetqoNvqLmNQPyVXWfPtqyZYqgDiyxPiw"</span></span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">read_sheet</span>(url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>! Using an auto-discovered, cached token.
@@ -225,7 +225,6 @@ O seguinte objeto é mascarado por 'package:stats':
   See gargle's "Non-interactive auth" vignette for more details:
   &lt;https://gargle.r-lib.org/articles/non-interactive-auth.html&gt;
 ℹ The googlesheets4 package is using a cached token for 'tais.machado@ufv.br'.
-Auto-refreshing stale OAuth token.
 ✔ Reading from "atividade enzimatica".
 ✔ Range 'atividade_enzimatica'.</code></pre>
 </div>
@@ -241,8 +240,70 @@ Auto-refreshing stale OAuth token.
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Enzimas disponíveis</span></span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>enzimas <span class="ot">&lt;-</span> <span class="fu">unique</span>(dados<span class="sc">$</span>enzima)</span>
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Salvar base para uso em resultados</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(dados, enzimas, <span class="at">file =</span> <span class="st">"estatisticas_base.RData"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Salvar base para uso posterior</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(dados, enzimas, <span class="at">file =</span> <span class="st">"estatisticas_base.RData"</span>)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Escolher enzima para análise</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>enzima_escolhida <span class="ot">&lt;-</span> <span class="st">"xil"</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>subdados <span class="ot">&lt;-</span> dados <span class="sc">%&gt;%</span> <span class="fu">filter</span>(enzima <span class="sc">==</span> enzima_escolhida)</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Teste de normalidade (A-D)</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>normalidade <span class="ot">&lt;-</span> subdados <span class="sc">%&gt;%</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(isolado, substrato) <span class="sc">%&gt;%</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">n</span>() <span class="sc">&gt;=</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">ad_p =</span> <span class="fu">tryCatch</span>(nortest<span class="sc">::</span><span class="fu">ad.test</span>(atividade)<span class="sc">$</span>p.value, <span class="at">error =</span> <span class="cf">function</span>(e) <span class="cn">NA_real_</span>),</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">"drop"</span>)</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"🧪 Grupos com n≥5 testados para normalidade:"</span>, <span class="fu">nrow</span>(normalidade), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>🧪 Grupos com n≥5 testados para normalidade: 0 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Teste de Levene</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>levene <span class="ot">&lt;-</span> <span class="fu">levene_test</span>(subdados, atividade <span class="sc">~</span> isolado <span class="sc">*</span> substrato)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in anova.lm(lm(resp ~ group)): testes-F ANOVA sobre um ajuste
+essencialmente perfeito, são incertos</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"📊 Levene p ="</span>, <span class="fu">formatC</span>(levene<span class="sc">$</span>p, <span class="at">digits =</span> <span class="dv">3</span>),</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ifelse</span>(levene<span class="sc">$</span>p <span class="sc">&lt;</span> <span class="fl">0.05</span>, <span class="st">"→ variâncias diferentes ⚠"</span>, <span class="st">"→ variâncias homogêneas ✔"</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>📊 Levene p =    0 → variâncias diferentes ⚠ </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificação de estrutura dos dados</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>grupos_com_mais_de_um <span class="ot">&lt;-</span> subdados <span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(isolado, substrato) <span class="sc">%&gt;%</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">1</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>variancia_zero <span class="ot">&lt;-</span> subdados <span class="sc">%&gt;%</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(isolado, substrato) <span class="sc">%&gt;%</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">sd =</span> <span class="fu">sd</span>(atividade, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sd <span class="sc">==</span> <span class="dv">0</span> <span class="sc">|</span> <span class="fu">is.na</span>(sd))</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co"># ANOVA e pós-teste</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">nrow</span>(grupos_com_mais_de_um) <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"⚠ ANOVA não realizada: apenas 1 valor por grupo (isolado + substrato).</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  anova_result <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  tukey <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">nrow</span>(variancia_zero) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"⚠ ANOVA não realizada: variância nula em um ou mais grupos.</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>  anova_result <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>  tukey <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>  modelo <span class="ot">&lt;-</span> <span class="fu">suppressWarnings</span>(<span class="fu">aov</span>(atividade <span class="sc">~</span> isolado <span class="sc">*</span> substrato, <span class="at">data =</span> subdados))</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>  anova_result <span class="ot">&lt;-</span> <span class="fu">summary</span>(modelo)[[<span class="dv">1</span>]]</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>  pvals <span class="ot">&lt;-</span> anova_result[[<span class="st">"Pr(&gt;F)"</span>]][<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">any</span>(pvals <span class="sc">&lt;</span> <span class="fl">0.05</span>)) {</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"📈 ANOVA: diferenças significativas detectadas.</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>    tukey <span class="ot">&lt;-</span> <span class="fu">TukeyHSD</span>(modelo)</span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"➖ ANOVA: sem diferenças significativas detectadas.</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>    tukey <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>⚠ ANOVA não realizada: variância nula em um ou mais grupos.</code></pre>
+</div>
 </div>
 </section>
 <section id="metodologia-estatística-aplicada" class="level2">
@@ -254,6 +315,9 @@ Auto-refreshing stale OAuth token.
 <p>Durante a análise dos dados de atividade enzimática dos fungos isolados, observou-se que todos grupos (combinações de isolado e substrato) apresentaram <strong>variância nula,</strong> ou seja, todos os valores de atividade medidos foram idênticos.</p>
 <p>Esse cenário impossibilita a aplicação de testes estatísticos inferenciais, como a ANOVA e o teste de Tukey, que dependem da existência de variação entre e dentro dos grupos para identificar diferenças significativas.</p>
 <p>Dessa forma, optamos por realizar uma análise descritiva, baseada nas médias das atividades enzimáticas, permitindo ainda assim comparar os isolados quanto ao seu desempenho médio, mesmo sem suporte estatístico para afirmar diferença significativa.</p></li>
+</ul>
+<!-- -->
+<ul>
 <li><p><strong>Estatística descritiva:</strong> foram calculadas medidas como média, desvio padrão e mediana para cada combinação de isolado e substrato. Esses parâmetros permitiram descrever o comportamento central e a variabilidade da atividade enzimática de forma mais precisa, mesmo na ausência de significância estatística.</p>
 <ul>
 <li><p><strong>Média:</strong> utilizada para representar o desempenho médio de cada isolado sob determinado substrato, facilitando comparações diretas entre os tratamentos.</p></li>
