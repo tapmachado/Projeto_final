@@ -1,0 +1,38 @@
+---
+title: "Projeto final da disciplina FIP 606"
+---
+
+<!-- Banner com imagem de capa -->
+
+::: banner-container
+<img src="Imagens/capa.jpg" alt="Capa do projeto" class="banner-image" width="664"/>
+:::
+
+<!-- Conteúdo centralizado -->
+
+# 💡 Biotecnologia Aplicada à Destoca Florestal
+
+## Projeto desenvolvido na disciplina FIP 606
+
+Este site apresenta a proposta e os resultados do projeto final da disciplina **FIP 606**, com foco na aplicação de enzimas lignocelulolíticas para acelerar a **biodegradação de tocos florestais** de forma sustentável.
+
+| Enzima      | Função Principal          | Origem Testada     |
+|-------------|---------------------------|--------------------|
+| Lacases     | Degradação de lignina     | Fungos nativos     |
+| Peroxidases | Oxidação de compostos     | *Pleurotus* spp.   |
+| Celulases   | Quebra de celulose        | Bactérias isoladas |
+| Xilanases   | Hidrólise de hemicelulose | Fungos comerciais  |
+
+# ✅ Principais vantagens identificadas:
+
+::: highlight-box
+-   ⏱ **Redução média de 35–40% no tempo de degradação**
+-   🌱 **Preservação da microbiota do solo**
+-   💰 **Economia de até 30% em custos operacionais**
+:::
+
+------------------------------------------------------------------------
+
+```         
+             Navegue pelo menu acima para acessar os nossos resultados.
+```

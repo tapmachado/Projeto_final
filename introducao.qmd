@@ -1,0 +1,15 @@
+---
+title: "Introdução"
+---
+
+## Biodestoca
+
+Nos ultimos anos, a silvicultura vem crescendo acentuadamente no Brasil, especialmente as monoculturas de Eucalipto para suprir o mercado de celulose. A rotação do Eucalipto para produzir celulose, dura no máximo 7 anos. Quando essas áreas são reformadas por mais de 2 ciclos consecutivos, é necessário realizar a destoca no local, para remover restos de raizes e tocos que dificultam o preparo do solo e plantio de novos ciclos. O processo de Destoca mais usual é a destoca mecânica, entretanto esse processo é oneroso e causa muitos impactos ambientais, dentre eles: compactação e perda da diversidade do solo, desgaste de equipamentos entre outros.
+
+Na busca de alternativas que visam contornar esses problemas, estudos vem sendo realizados para preencher essa lacuna no setor florestal, como o uso de microorganismos xilófagos para acelerar a biodegradação e facilitar ou mesmo substituir a destoca mecânica.
+
+Diante do exposto esse trabalho tem como objetivo encontrar fungos xilófagos que possuam potencial enzimático para serem aplicados na biodegradação acelerada de tocos remanescentes em reflorestamentos comerciais.
+
+Fungos foram coletados em reflorestamentos de Pinus e Eucalipto no Sul do Brasil, para que desses, fosse aferido o potencial enzimático na degradação da parede celular vegetal, para serem utilizados como agentes biotecnológicos na destoca biológica (carinhosamente chamada de "**Biodestoca**").
+
+![](Imagens/fig1.png){fig-align="center"}

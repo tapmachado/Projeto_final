@@ -1,0 +1,10 @@
+---
+title: "Equipe"
+format: html
+---
+
+# Equipe  
+
+![](marina.jpg){fig-align="center" width="234"}
+
+\# **Marina Rodrigues \| LAMID**

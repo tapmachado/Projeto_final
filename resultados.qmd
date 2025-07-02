@@ -1,0 +1,98 @@
+---
+title: "Resultados"
+---
+
+## 📈 Análises e Gráficos por Enzima
+
+```{r}
+# Carregar pacotes necessários
+library(tidyverse)
+library(forcats)
+library(emmeans)
+
+# Carregar os dados previamente salvos pelo arquivo estatisticas.qmd
+load("estatisticas_base.RData")
+
+# Verificar as enzimas disponíveis
+enzimas <- unique(dados$enzima)
+
+# Dicionário de nomes completos das enzimas
+nomes_enzimas <- c(
+  bgli = "β-glicosidase",
+  xil = "Xilanase",
+  endog = "Endoglucanase",
+  lac = "Lacase",
+  fpa = "FPase",
+  bxil = "β-xilosidase",
+  mangper = "Manganês Peroxidase"
+)
+```
+
+---
+
+## 🧪 Gráficos de Atividade Enzimática
+
+```{r}
+# Loop para gerar um gráfico por enzima
+for (enz in enzimas) {
+  
+  subdados <- dados %>%
+    filter(enzima == enz) %>%
+    filter(!is.na(atividade), !is.nan(atividade), !is.infinite(atividade))
+  
+  if (nrow(subdados) < 3) next
+  
+  nome_completo <- nomes_enzimas[[tolower(enz)]]
+  if (is.null(nome_completo)) nome_completo <- enz
+  
+  grafico <- subdados %>%
+    group_by(isolado, substrato) %>%
+    summarise(
+      media = mean(atividade, na.rm = TRUE),
+      .groups = "drop"
+    ) %>%
+    ggplot(aes(x = media, y = forcats::fct_rev(isolado), fill = substrato)) +
+    geom_col() +
+    labs(
+      title = paste("Atividade da enzima:", nome_completo),
+      x = "Média da atividade (U/mL)",
+      y = "Isolado",
+      fill = "Substrato"
+    ) +
+    theme_minimal() +
+    theme(
+      plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),
+      legend.position = "right"
+    )
+  
+  print(grafico)
+}
+```
+
+---
+
+## 🏆 Top 3 Isolados por Enzima
+
+```{r}
+melhores_isolados <- dados %>%
+  group_by(enzima, isolado) %>%
+  summarise(media_atividade = mean(atividade, na.rm = TRUE), .groups = "drop") %>%
+  arrange(enzima, desc(media_atividade)) %>%
+  group_by(enzima) %>%
+  slice_head(n = 3)
+
+knitr::kable(
+  melhores_isolados,
+  caption = "Top 3 isolados com maior média de atividade por enzima",
+  digits = 2
+)
+```
+
+---
+
+## ✅ Conclusões
+
+- As análises revelaram diferenças marcantes entre isolados e substratos.
+- Os **três melhores isolados por enzima** foram identificados com base na **média de atividade**, o que ajuda a selecionar os candidatos mais promissores.
+- As informações aqui apresentadas podem embasar recomendações práticas para biodegradação de tocos com consórcios enzimáticos.
+

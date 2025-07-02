@@ -1,0 +1,58 @@
+---
+title: "Estatísticas"
+---
+
+## ANÁLISE ESTATÍSTICA PARA DADOS ENZIMÁTICOS
+
+Nossos dados comportam a atividade enzimática do grupo de Fungos coletados no Sul do Brasil.
+
+-   A planilha no google contém dados de 20 **isolados** induzidos em 3 diferentes **substratos,** dos quais vamos quantificar a expressão de 7 **enzimas.**
+
+🧾 Passo 1 - Importação dos dados diretamente de uma planilha do Google Sheets
+
+```{r}
+# Carregar pacotes
+library(googlesheets4)
+library(tidyverse)
+library(rstatix)
+library(ggpubr)
+library(nortest)
+
+# Importar dados do Google Sheets
+url <- "https://docs.google.com/spreadsheets/d/14YBzyOu-bqmetqoNvqLmNQPyVXWfPtqyZYqgDiyxPiw/edit?usp=drive_web"
+dados <- read_sheet(url)
+
+# Corrigir tipos
+dados <- dados %>%
+  mutate(
+    isolado = as.factor(isolado),
+    substrato = as.factor(substrato),
+    repeticao = as.factor(repeticao),
+    enzima = as.factor(enzima)
+  )
+
+# Enzimas disponíveis
+enzimas <- unique(dados$enzima)
+
+# Salvar base para uso em resultados
+save(dados, enzimas, file = "estatisticas_base.RData")
+```
+
+-   *Buscamos realizar análises estatísticas robustas:* Teste de normalidade de Anderson-Darling, um teste robusto de normalidade que é sensível á caudas de distribuição; Homocedasticidade pelo teste de Levene por ser mais robusto em dados não normais e com distribuição incerta, ANOVA e post-hoc: Teste de Tukey para comparação de médias.
+
+-   Ao final da análise, objetivamos visualizar os resultados em gráficos intuitivos que demontrem quais fungos se destacam na produção das enzimas de interesse e se a indução sob determinado substrato interfere na atividade enzimática dos isolados.
+
+## 📊 Metodologia estatística aplicada
+
+Para garantir a robustez da análise, foram utilizados os seguintes testes estatísticos:
+
+1. **Estatística descritiva:** média, desvio padrão e mediana para cada combinação `isolado x substrato`.
+2. **Teste de normalidade (Anderson-Darling):** aplicado aos grupos com n ≥ 5 para verificar se os dados seguem distribuição normal.
+3. **Teste de homogeneidade de variância (Levene):** verifica se há homogeneidade entre os grupos antes da ANOVA.
+4. **ANOVA fatorial (2 vias):** avalia se há diferenças significativas entre isolados, substratos e sua interação.
+5. **Teste de Tukey HSD (post-hoc):** quando ANOVA indica diferenças significativas, este teste identifica quais grupos diferem entre si.
+6. *(Opcional)* **Agrupamento por letras de significância:** com base no teste de Tukey, agrupamentos de isolados com diferenças estatísticas são representados por letras distintas.
+
+Essa sequência de testes garante que a seleção dos isolados mais promissores seja estatisticamente embasada.
+
+
