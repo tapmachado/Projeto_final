@@ -5,7 +5,7 @@ title: ""
 <!-- Banner com imagem de capa -->
 
 ::: banner-container
-<img src="Imagens/capa.jpg" alt="Capa do projeto" class="banner-image" width="664"/>
+![](Imagens/capa.jpg){.banner-image alt="Capa do projeto" fig-align="center" width="664"}
 :::
 
 <!-- Conteúdo centralizado -->
@@ -34,5 +34,5 @@ Este site apresenta a proposta e os resultados do projeto final da disciplina **
 ------------------------------------------------------------------------
 
 ```         
-             Navegue pelo menu acima para acessar os nossos resultados.
+            Navegue pelo menu acima para acessar os nossos resultados.
 ```
