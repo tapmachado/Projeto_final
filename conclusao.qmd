@@ -21,4 +21,4 @@ Com base na média da atividade enzimática, foram selecionados os três isolado
 
 -   Xilanase: isolados 24, 1 e 42
 
-Ao integrar os resultados das diferentes enzimas avaliadas, destacam-se como os três isolados mais promissores no desempenho geral: **24, 1 e 42.** Esses isolados apresentaram elevada atividade em múltiplas enzimas e, portanto, são recomendados para testes em maior escala visando sua aplicação na biodestoca e outras estratégias de degradação lignocelulósica.
+Ao integrar os resultados das diferentes enzimas avaliadas, destacam-se como os **três isolados** mais promissores no desempenho geral: **24, 1 e 42.** Esses isolados apresentaram elevada atividade em múltiplas enzimas e, portanto, são recomendados para testes em maior escala visando sua aplicação na biodestoca e outras estratégias de degradação lignocelulósica.
