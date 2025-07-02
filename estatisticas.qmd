@@ -46,13 +46,11 @@ save(dados, enzimas, file = "estatisticas_base.RData")
 
 Para garantir a robustez da análise, foram utilizados os seguintes testes estatísticos:
 
-1. **Estatística descritiva:** média, desvio padrão e mediana para cada combinação `isolado x substrato`.
-2. **Teste de normalidade (Anderson-Darling):** aplicado aos grupos com n ≥ 5 para verificar se os dados seguem distribuição normal.
-3. **Teste de homogeneidade de variância (Levene):** verifica se há homogeneidade entre os grupos antes da ANOVA.
-4. **ANOVA fatorial (2 vias):** avalia se há diferenças significativas entre isolados, substratos e sua interação.
-5. **Teste de Tukey HSD (post-hoc):** quando ANOVA indica diferenças significativas, este teste identifica quais grupos diferem entre si.
-6. *(Opcional)* **Agrupamento por letras de significância:** com base no teste de Tukey, agrupamentos de isolados com diferenças estatísticas são representados por letras distintas.
+1.  **Estatística descritiva:** média, desvio padrão e mediana para cada combinação `isolado x substrato`.
+2.  **Teste de normalidade (Anderson-Darling):** aplicado aos grupos com n ≥ 5 para verificar se os dados seguem distribuição normal.
+3.  **Teste de homogeneidade de variância (Levene):** verifica se há homogeneidade entre os grupos antes da ANOVA.
+4.  **ANOVA fatorial (2 vias):** avalia se há diferenças significativas entre isolados, substratos e sua interação.
+5.  **Teste de Tukey HSD (post-hoc):** quando ANOVA indica diferenças significativas, este teste identifica quais grupos diferem entre si.
+6.  *(Opcional)* **Agrupamento por letras de significância:** com base no teste de Tukey, agrupamentos de isolados com diferenças estatísticas são representados por letras distintas.
 
 Essa sequência de testes garante que a seleção dos isolados mais promissores seja estatisticamente embasada.
-
-

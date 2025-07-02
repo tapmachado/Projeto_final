@@ -10,7 +10,7 @@ title: ""
 
 <!-- Conteúdo centralizado -->
 
-#                PROJETO FINAL FIP 606 - Análise e visualização de dados em fitopatologia
+# PROJETO FINAL FIP 606 - Análise e visualização de dados em fitopatologia
 
 # 💡 **Biotecnologia aplicada à destoca florestal**
 
