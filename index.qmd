@@ -12,7 +12,9 @@ title: ""
 
 # PROJETO FINAL FIP 606 - Análise e visualização de dados em fitopatologia
 
-#   **Biotecnologia aplicada à destoca florestal**
+Olá, nós somos Marina, Taís e Vitória mestrandas do Programa de Pós-Graduação em Fitopatologia da Universidade Federal de Viçosa (UFV). Nesse site, iremos apresentar para você o Projeto Final desenvolvido por nós na Disciplina FIP 606 - Análise e Visualização de Dados em Fitopatologia, ministrada pelo Professor Emerson Medeiros Del Ponte.
+
+# **Biotecnologia aplicada à destoca florestal**
 
 Este site apresenta a proposta e os resultados do projeto final da disciplina **FIP 606**, com foco na aplicação de enzimas lignocelulolíticas para acelerar a **biodegradação de tocos florestais** de forma sustentável.
 
