@@ -27,7 +27,9 @@ Este site apresenta a proposta e os resultados do projeto final da disciplina **
 
 ::: highlight-box
 -   ⏱ **Redução média de 35–40% no tempo de degradação**
+
 -   🌱 **Preservação da microbiota do solo**
+
 -   💰 **Economia de até 30% em custos operacionais**
 :::
 
