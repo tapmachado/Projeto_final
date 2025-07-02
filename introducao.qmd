@@ -15,3 +15,27 @@ Diante do exposto esse trabalho teve como objetivo encontrar fungos xilófagos c
 Para isso, fungos foram coletados em reflorestamentos de Pinus e Eucalipto no Sul do Brasil (Figura 2), para que desses, fosse aferido o potencial enzimático na degradação da parede celular vegetal, para serem utilizados como agentes biotecnológicos na destoca biológica (carinhosamente chamada de "**Biodestoca**").
 
 ![](Imagens/Imagem%20do%20WhatsApp%20de%202025-06-20%20à(s)%2023.40.25_478cbf23.jpg){fig-align="center" width="601"}
+
+Para isso, foram utilizados três substratos diferentes:
+
+CS: Casca de soja
+
+Ft: Farinha de trigo
+
+SP: Serragem de Pinus
+
+Para as seguintes enzimas:
+
+1.  β-glicosidase;
+
+2.  β-xilosidase;
+
+3.  Endoglucanase;
+
+4.  F-PAse;
+
+5.  Lacase;
+
+6.  Manganês-peroxidase;
+
+7.  Xilanase.
