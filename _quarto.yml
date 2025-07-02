@@ -16,8 +16,6 @@ website:
         href: estatisticas.qmd
       - text: "Resultados"
         href: resultados.qmd
-      - text: "Equipe"
-        href: equipe.qmd
     right:
       - icon: github
         href: "https://github.com/tapmachado"  # Substitua com seu GitHub real
@@ -26,8 +24,8 @@ website:
       - icon: github
         href: "https://github.com/vitxriab7"  # Substitua com seu GitHub real
       - icon: search
-        href: "#search"
-
+    
+      
 format:
   html:
     theme: cosmo
