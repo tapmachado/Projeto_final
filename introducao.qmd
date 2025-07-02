@@ -16,6 +16,8 @@ Para isso, fungos foram coletados em reflorestamentos de Pinus e Eucalipto no Su
 
 ![](Imagens/Imagem%20do%20WhatsApp%20de%202025-06-20%20à(s)%2023.40.25_478cbf23.jpg){fig-align="center" width="601"}
 
+## Metologia:
+
 Para isso, foram utilizados três substratos diferentes:
 
 CS: Casca de soja
@@ -39,3 +41,13 @@ Para as seguintes enzimas:
 6.  Manganês-peroxidase;
 
 7.  Xilanase.
+
+**Etapa 1:** Indução dos substratos:
+
+![](Imagens/1.jpg){fig-align="center"}
+
+**Etapa 2:** Extração das enzimas:
+
+![](Imagens/2.jpg){fig-align="center"}
+
+**Etapa 3:** Para medir as enzimas utilizou-se o método colorimétrico de Miller.
