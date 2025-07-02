@@ -21,6 +21,10 @@ website:
     right:
       - icon: github
         href: "https://github.com/tapmachado"  # Substitua com seu GitHub real
+      - icon: github
+        href: "https://github.com/marinagpr/"  # Substitua com seu GitHub real
+      - icon: github
+        href: "https://github.com/vitxriab7"  # Substitua com seu GitHub real
       - icon: search
         href: "#search"
 
