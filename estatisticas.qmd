@@ -1,5 +1,5 @@
 ---
-title: "Estatísticas"
+title: ""
 ---
 
 ## ANÁLISE ESTATÍSTICA PARA DADOS ENZIMÁTICOS
